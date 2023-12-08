@@ -3,7 +3,7 @@
 
 import uuid
 import datetime
-from . import storage
+import models
 
 
 class BaseModel:
@@ -19,14 +19,14 @@ class BaseModel:
                 elif key != "__class__":
                     setattr(self, key, value)
         else:
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         return "[{}] ({}) {}".format(__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         dict_result = self.__dict__.copy()
