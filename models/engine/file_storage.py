@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -12,18 +13,26 @@ class FileStorage:
 
     def new(self, obj):
         key = obj.__class__.__name__ + "." + obj.id
-        value = obj.to_dict()
-        FileStorage.__objects.update({key: value})
+        FileStorage.__objects.update({key: obj})
 
     def save(self):
-        updated_objects = {}
-        for obj in FileStorage.__objects.keys():
-            updated_objects[obj] = FileStorage.__objects[obj].to_dict()
-        FileStorage.__objects = updated_objects.copy()
+        serialized_objects = {}
+        for obj_id, obj in FileStorage.__objects.items():
+            serialized_objects[obj_id] = obj.to_dict()
         with open(FileStorage.__file_path, "w") as json_file:
-            json.dump(FileStorage.__objects, json_file, indent=4)
+            json.dump(serialized_objects, json_file, indent=4)
+
+    # def reload(self):
+    #     if os.path.exists(FileStorage.__file_path):
+    #         with open(FileStorage.__file_path, "r") as json_file:
+    #             loaded_data = json.load(json_file)
+    #             for obj_id, obj_dict in loaded_data.items():
+    #                 class_name = obj_dict["__class__"]
+    #                 FileStorage.__objects[obj_id] = eval(class_name)(**obj_dict)
 
     def reload(self):
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as json_file:
-                FileStorage.__objects = json.load(json_file)
+                loaded_data = json.load(json_file)
+                for obj_id, obj_dict in loaded_data.items():
+                    FileStorage.__objects[obj_id] = BaseModel(**obj_dict)
