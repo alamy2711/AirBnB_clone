@@ -34,8 +34,8 @@ class Test_Base_Model_init(unittest.TestCase):
 
         self.assertEqual(model_dic["__class__"], my_model.__class__.__name__)
         self.assertEqual(model_dic["id"], my_model.id)
-        self.assertEqual(model_dic["created_at"], my_model.created_at)
-        self.assertEqual(model_dic["updated_at"], my_model.updated_at)
+        self.assertEqual(model_dic["created_at"], my_model.created_at.isoformat())
+        self.assertEqual(model_dic["updated_at"], my_model.updated_at.isoformat())
 
 
     def test_str_method(self):
