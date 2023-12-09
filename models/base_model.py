@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 """Base Model that defines all common attributes/methods for other classes"""
-
 import uuid
 import datetime
 import models
 
 
 class BaseModel:
+    """Base class for models with basic methods."""
+
     def __init__(self, *args, **kwargs):
+        """Inits a new instance with ids, timestamps, and optional attrs."""
+
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
@@ -15,20 +18,25 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     date_format = "%Y-%m-%dT%H:%M:%S.%f"
-                    setattr(self, key, datetime.datetime.strptime(value, date_format))
+                    setattr(self, key,
+                            datetime.datetime.strptime(value, date_format))
                 elif key != "__class__":
                     setattr(self, key, value)
         else:
             models.storage.new(self)
 
     def __str__(self):
-        return "[{}] ({}) {}".format(__class__.__name__, self.id, self.__dict__)
+        """Returns a string repr: '[ClassName] (id) attributes'."""
+        return "[{}] ({}) {}".format(__class__.__name__, self.id,
+                                     self.__dict__)
 
     def save(self):
+        """Updates 'updated_at' timestamp and saves using a storage model."""
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
+        """Converts attrs to a dict, incl. class info and timestamps."""
         dict_result = self.__dict__.copy()
         dict_result.update(
             {
