@@ -15,7 +15,15 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """Command-line interpreter for interacting with HBNB models."""
 
-    __classes_names = ["BaseModel", "User"]
+    __classes_names = [
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Amenity",
+        "Place",
+        "Review",
+    ]
     prompt = "(hbnb) "
 
     def do_quit(self, line):
