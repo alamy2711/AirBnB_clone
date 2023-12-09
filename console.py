@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Coonsole module contains the entry point of the command interpreter"""
 import cmd
+import shlex
 from models import storage
 from models.base_model import BaseModel
 
@@ -37,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, line):
         """Usage: show <class> <id>
         Show the string representation of an instance."""
-        args = line.split()
+        args = shlex.split(line)
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] not in HBNBCommand.__classes_names:
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """Usage: destroy <class> <id>
         Delete an instance based on the class name and id."""
-        args = line.split()
+        args = shlex.split(line)
         objects = storage.all()
         if len(args) == 0:
             print("** class name missing **")
@@ -74,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Usage: all or all <class>
         Prints all string representations of instances"""
-        args = line.split()
+        args = shlex.split(line)
         objects = storage.all()
         str_list = []
         if len(args) > 0 and args[0] not in HBNBCommand.__classes_names:
@@ -86,6 +87,33 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) == 0:
                     str_list.append(str(obj))
             print(str_list)
+
+    def do_update(self, line):
+        """Usage: update <class name> <id> <attribute name> "<attribute value>"
+        Updates an instance based on the class name and id by adding or
+        updating attribute"""
+        args = shlex.split(line)
+        objects = storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.__classes_names:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif f"{args[0]}.{args[1]}" not in objects.keys():
+            print("** no instance found **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
+        else:
+            obj = objects[f"{args[0]}.{args[1]}"]
+            if hasattr(obj, args[2]):
+                value_type = type(obj.eval(args[2]))
+                setattr(obj, args[2], value_type(args[3]))
+            else:
+                setattr(obj, args[2], args[3])
+            obj.save()
 
 
 if __name__ == "__main__":
