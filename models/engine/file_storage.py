@@ -4,6 +4,11 @@ import json
 import os
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -27,7 +32,7 @@ class FileStorage:
         for obj_id, obj in FileStorage.__objects.items():
             serialized_objects[obj_id] = obj.to_dict()
         with open(FileStorage.__file_path, "w") as json_file:
-            json.dump(serialized_objects, json_file)
+            json.dump(serialized_objects, json_file, indent=4)
 
     def reload(self):
         """Loads objects from the JSON file into the storage."""
