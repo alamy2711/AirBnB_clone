@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """Command-line interpreter for interacting with HBNB models."""
 
-    __classes_names = ["BaseModel"]
+    __classes_names = ["BaseModel", "User"]
     prompt = "(hbnb) "
 
     def do_quit(self, line):
