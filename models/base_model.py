@@ -27,7 +27,7 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string repr: '[ClassName] (id) attributes'."""
-        return "[{}] ({}) {}".format(__class__.__name__, self.id,
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                      self.__dict__)
 
     def save(self):
@@ -40,7 +40,7 @@ class BaseModel:
         dict_result = self.__dict__.copy()
         dict_result.update(
             {
-                "__class__": __class__.__name__,
+                "__class__": self.__class__.__name__,
                 "created_at": self.created_at.isoformat(),
                 "updated_at": self.updated_at.isoformat(),
             }
