@@ -152,6 +152,7 @@ class HBNBCommand(cmd.Cmd):
             "show": self.do_show,
             "destroy": self.do_destroy,
             "update": self.do_update,
+            "count": self.do_count,
         }
         dot_match = re.search(r"\.", line)
         if dot_match:
@@ -166,6 +167,20 @@ class HBNBCommand(cmd.Cmd):
                     return methods[method_name](new_line)
         print(f"*** Unknown syntax: {line}")
         return False
+
+    def do_count(self, line):
+        """
+        Usage: count <class> or <class>.count().
+
+        Count the number of instances of a specified class.
+        """
+        args = shlex.split(line)
+        objects = storage.all()
+        count = 0
+        for obj in objects.values():
+            if args[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
 
 
 if __name__ == "__main__":
