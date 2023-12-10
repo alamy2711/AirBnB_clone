@@ -19,10 +19,10 @@ For more detailed information about the project, refer to the [Wiki](https://git
 
 The console is designed to perform the following tasks:
 
-# * Create a new object
-# * Retrieve an object from a file
-# * Perform operations on objects
-# * Destroy an object
+## * Create a new object
+## * Retrieve an object from a file
+## * Perform operations on objects
+## * Destroy an object
 
 ### Storage
 
