@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Coonsole module contains the entry point of the command interpreter"""
+"""Coonsole module contains the entry point of the command interpreter."""
 import cmd
 import shlex
 from models import storage
@@ -37,8 +37,11 @@ class HBNBCommand(cmd.Cmd):
     do_EOF = do_quit
 
     def do_create(self, line):
-        """Usage: create <class>
-        Create a new instance of a specified class."""
+        """
+        Usage: create <class>.
+
+        Create a new instance of a specified class.
+        """
         if len(line.split()) == 1:
             try:
                 new_instance = eval(line)()
@@ -50,8 +53,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_show(self, line):
-        """Usage: show <class> <id>
-        Show the string representation of an instance."""
+        """
+        Usage: show <class> <id>.
+
+        Show the string representation of an instance.
+        """
         args = shlex.split(line)
         if len(args) == 0:
             print("** class name missing **")
@@ -68,8 +74,11 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, line):
-        """Usage: destroy <class> <id>
-        Delete an instance based on the class name and id."""
+        """
+        Usage: destroy <class> <id>.
+
+        Delete an instance based on the class name and id.
+        """
         args = shlex.split(line)
         objects = storage.all()
         if len(args) == 0:
@@ -87,8 +96,11 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, line):
-        """Usage: all or all <class>
-        Prints all string representations of instances"""
+        """
+        Usage: all or all <class>.
+
+        Prints all string representations of instances
+        """
         args = shlex.split(line)
         objects = storage.all()
         str_list = []
@@ -103,9 +115,12 @@ class HBNBCommand(cmd.Cmd):
             print(str_list)
 
     def do_update(self, line):
-        """Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """
+        Usage: update <class name> <id> <attribute name> "<attribute value>".
+
         Updates an instance based on the class name and id by adding or
-        updating attribute"""
+        updating attribute.
+        """
         args = shlex.split(line)
         objects = storage.all()
         if len(args) == 0:
