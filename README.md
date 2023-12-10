@@ -19,10 +19,10 @@ For more detailed information about the project, refer to the [Wiki](https://git
 
 The console is designed to perform the following tasks:
 
-## * Create a new object
-## * Retrieve an object from a file
-## * Perform operations on objects
-## * Destroy an object
+### * Create a new object
+### * Retrieve an object from a file
+### * Perform operations on objects
+### * Destroy an object
 
 ### Storage
 
@@ -41,7 +41,7 @@ This project was developed and tested on Ubuntu 20.04 LTS using Python 3.8.3. Th
 
 ```bash
 git clone https://github.com/aysuarex/AirBnB_clone.git
-cd AirBnb
+cd AirBnB_clone
 ./console.py
 ```
 
