@@ -2,6 +2,7 @@
 """Coonsole module contains the entry point of the command interpreter."""
 import cmd
 import shlex
+import re
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -143,6 +144,28 @@ class HBNBCommand(cmd.Cmd):
             else:
                 setattr(obj, args[2], args[3])
             obj.save()
+
+    def default(self, line):
+        """Handle unknown commands."""
+        methods = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "update": self.do_update,
+        }
+        dot_match = re.search(r"\.", line)
+        if dot_match:
+            before_dot = line[: dot_match.span()[0]]
+            after_dot = line[dot_match.span()[1]:]
+            match = re.search(r"\((.*?)\)", after_dot)
+            if match:
+                method_name = after_dot[: match.span()[0]]
+                method_args = match.group()[1:-1]
+                if method_name in methods.keys():
+                    new_line = f"{before_dot} {method_args}"
+                    return methods[method_name](new_line)
+        print(f"*** Unknown syntax: {line}")
+        return False
 
 
 if __name__ == "__main__":
