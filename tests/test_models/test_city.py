@@ -25,7 +25,6 @@ class TestCity(unittest.TestCase):
     def test_state_id(self):
         """Test the state_id attribute of City instances."""
         city1 = City()
-        city2 = City()
         self.assertEqual(str, type(city1.state_id))
         self.assertTrue(hasattr(city1, "state_id"))
         
@@ -33,7 +32,6 @@ class TestCity(unittest.TestCase):
     def test_name(self):
         """Test the name attribute of City instances."""
         city1 = City()
-        city2 = City()
         self.assertEqual(str, type(city1.name))
         self.assertTrue(hasattr(city1, "name"))
         
