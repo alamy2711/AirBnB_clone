@@ -16,6 +16,7 @@ This is a team project aimed at creating a clone of [AirBnB](https://www.airbnb.
 
 For more detailed information about the project, refer to the [Wiki](https://github.com/ralexrivero/AirBnB_clone/wiki).
 
+
 The console is designed to perform the following tasks:
 
 * Create a new object
