@@ -13,6 +13,14 @@ from models.place import Place
 from models.review import Review
 
 
+def line_parser(line):
+    """Parse a command line into a list of arguments."""
+    args = []
+    for arg in shlex.split(line):
+        args.append(arg.strip(","))
+    return args
+
+
 class HBNBCommand(cmd.Cmd):
     """Command-line interpreter for interacting with HBNB models."""
 
@@ -122,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and id by adding or
         updating attribute.
         """
-        args = shlex.split(line)
+        args = line_parser(line)
         objects = storage.all()
         if len(args) == 0:
             print("** class name missing **")
@@ -139,7 +147,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj = objects[f"{args[0]}.{args[1]}"]
             if hasattr(obj, args[2]):
-                value_type = type(obj.eval(args[2]))
+                value_type = type(getattr(obj, args[2]))
                 setattr(obj, args[2], value_type(args[3]))
             else:
                 setattr(obj, args[2], args[3])
