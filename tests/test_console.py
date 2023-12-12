@@ -87,12 +87,13 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertTrue(HBNBCommand().onecmd("quit"))
 
     def test_all_functionality(self):
+        correct = "["
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("all"))
-            self.assertTrue("[" in output.getvalue().strip())
+            self.assertTrue(correct in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".all()"))
-            self.assertTrue("[" in output.getvalue().strip())
+            self.assertEqual(correct, output.getvalue().strip())
 
     def test_create_functionality(self):
         correct = "** class name missing **"
@@ -101,8 +102,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertTrue(correct in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".create()"))
-            self.assertEqual("*** Unknown syntax: .create()",
-                             output.getvalue().strip())
+            self.assertEqual("*** Unknown syntax: .create()", output.getvalue().strip())
 
 
 if __name__ == "__main__":
