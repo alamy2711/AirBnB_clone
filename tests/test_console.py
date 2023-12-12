@@ -87,7 +87,6 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertTrue(HBNBCommand().onecmd("quit"))
 
     def test_all_functionality(self):
-        correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("all"))
             self.assertTrue("[" in output.getvalue().strip())
