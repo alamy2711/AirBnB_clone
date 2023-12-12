@@ -74,7 +74,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_help_functionality(self):
-        correct = "** class name missing **"
+        correct = "*** Unknown syntax: .help()"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertTrue("Documented commands" in output.getvalue().strip())
@@ -85,8 +85,6 @@ class TestHBNBCommand_prompting(unittest.TestCase):
     def test_quit_functionality(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("quit"))
-        
-            
 
     def test_all_functionality(self):
         correct = "** class name missing **"
