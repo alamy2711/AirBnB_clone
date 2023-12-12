@@ -24,6 +24,9 @@ class TestHBNBCommand_prompting(unittest.TestCase):
         """Test the do_quit method of the HBNB command interpreter."""
         hbnb_command_instance = HBNBCommand()
         self.assertTrue(hbnb_command_instance.do_quit(None))
+    def test_EOF_exits(self):
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertTrue(HBNBCommand().onecmd("EOF"))
 
 
 if __name__ == "__main__":
