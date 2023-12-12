@@ -90,7 +90,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
         correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("all"))
-            self.assertTrue("Documented commands" in output.getvalue().strip())
+            self.assertTrue("[" in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".all()"))
             self.assertEqual(correct, output.getvalue().strip())
