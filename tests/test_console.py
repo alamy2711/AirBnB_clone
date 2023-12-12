@@ -93,8 +93,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertTrue("[" in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".all()"))
-            self.assertEqual(output.getvalue().strip(),
-                             output.getvalue().strip())
+            self.assertTrue("[" in output.getvalue().strip())
 
     def test_create_functionality(self):
         correct = "** class name missing **"
