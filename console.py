@@ -16,8 +16,17 @@ from models.review import Review
 def line_parser(line):
     """Parse a command line into a list of arguments."""
     args = []
+    curly_braces_match = re.search(r"\{(.*?)\}", line)
+    if curly_braces_match:
+        args_dict_str = curly_braces_match.group()
+        line = line.replace(args_dict_str, "temporary_text")
+
     for arg in shlex.split(line):
         args.append(arg.strip(","))
+
+    if curly_braces_match:
+        args[len(args) - 1] = args_dict_str
+
     return args
 
 
@@ -63,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-        Usage: show <class> <id>.
+        Usage: show <class> <id> or <class>.show(<id>)
 
         Show the string representation of an instance.
         """
@@ -84,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-        Usage: destroy <class> <id>.
+        Usage: destroy <class> <id> or <class>.destroy(<id>)
 
         Delete an instance based on the class name and id.
         """
@@ -106,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """
-        Usage: all or all <class>.
+        Usage: all or all <class> or <class>.all()
 
         Prints all string representations of instances
         """
@@ -125,10 +134,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-        Usage: update <class name> <id> <attribute name> "<attribute value>".
+         Usage: update <class> <id> <attribute_name> <attribute_value> or
+        <class>.update(<id>, <attribute_name>, <attribute_value>) or
+        <class>.update(<id>, <dictionary>)
 
-        Updates an instance based on the class name and id by adding or
-        updating attribute.
+         Updates an instance based on the class name and id by adding or
+         updating attribute.
         """
         args = line_parser(line)
         objects = storage.all()
@@ -143,7 +154,18 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 2:
             print("** attribute name missing **")
         elif len(args) == 3:
-            print("** value missing **")
+            if type(eval(args[2])) != dict:
+                print("** value missing **")
+            else:
+                obj = objects[f"{args[0]}.{args[1]}"]
+                args_dict = eval(args[2])
+                for key, value in args_dict.items():
+                    if hasattr(obj, key):
+                        value_type = type(getattr(obj, key))
+                        setattr(obj, key, value_type(value))
+                    else:
+                        setattr(obj, key, value)
+                obj.save()
         else:
             obj = objects[f"{args[0]}.{args[1]}"]
             if hasattr(obj, args[2]):
@@ -178,7 +200,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, line):
         """
-        Usage: count <class> or <class>.count().
+        Usage: count <class> or <class>.count()
 
         Count the number of instances of a specified class.
         """
