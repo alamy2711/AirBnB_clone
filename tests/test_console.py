@@ -102,7 +102,8 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertTrue(correct in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".create()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertEqual("*** Unknown syntax: .create()",
+                             output.getvalue().strip())
 
 
 if __name__ == "__main__":
