@@ -74,7 +74,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_help_functionality(self):
-        correct = "** class name missing **"
+        correct = "*** Unknown syntax: .help()"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertTrue("Documented commands" in output.getvalue().strip())
@@ -85,26 +85,25 @@ class TestHBNBCommand_prompting(unittest.TestCase):
     def test_quit_functionality(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("quit"))
-        
-            
 
     def test_all_functionality(self):
-        correct = "** class name missing **"
+        correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("all"))
-            self.assertTrue("Documented commands" in output.getvalue().strip())
+            self.assertTrue("[" in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
+            self.assertFalse(HBNBCommand().onecmd("MyModel.all()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_create_functionality(self):
-        correct = "** class name missing **"
+        correct1 = "** class name missing **"
+        correct2 = "*** Unknown syntax: .create()"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create"))
-            self.assertTrue("Documented commands" in output.getvalue().strip())
+            self.assertTrue(correct1 in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".create()"))
-            self.assertEqual(correct, output.getvalue().strip())
+            self.assertEqual(correct2, output.getvalue().strip())
 
 
 if __name__ == "__main__":
