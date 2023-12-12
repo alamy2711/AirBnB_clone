@@ -154,9 +154,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 2:
             print("** attribute name missing **")
         elif len(args) == 3:
-            if type(eval(args[2])) != dict:
-                print("** value missing **")
-            else:
+            try:
+                if type(eval(args[2])) != dict:
+                    raise NameError
                 obj = objects[f"{args[0]}.{args[1]}"]
                 args_dict = eval(args[2])
                 for key, value in args_dict.items():
@@ -166,6 +166,8 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         setattr(obj, key, value)
                 obj.save()
+            except NameError:
+                print("** value missing **")
         else:
             obj = objects[f"{args[0]}.{args[1]}"]
             if hasattr(obj, args[2]):
