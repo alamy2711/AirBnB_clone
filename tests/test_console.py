@@ -11,6 +11,7 @@ from models import storage
 from unittest.mock import patch
 from models.engine.file_storage import FileStorage
 from console import HBNBCommand
+from io import StringIO
 
 
 class TestHBNBCommand_prompting(unittest.TestCase):
@@ -28,6 +29,17 @@ class TestHBNBCommand_prompting(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("EOF"))
 
+    def test_all_single_object_dot_notation(self):
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("BaseModel.all()"))
 
 
 if __name__ == "__main__":
