@@ -1,0 +1,98 @@
+{
+    "State.f81188c7-7b50-4c21-a478-ea3059f05bcd": {
+        "id": "f81188c7-7b50-4c21-a478-ea3059f05bcd",
+        "created_at": "2023-12-12T23:01:44.708620",
+        "updated_at": "2023-12-12T23:01:44.708675",
+        "__class__": "State"
+    },
+    "Amenity.438ea770-890f-4672-af75-cb77fdee2b21": {
+        "id": "438ea770-890f-4672-af75-cb77fdee2b21",
+        "created_at": "2023-12-12T23:01:44.710040",
+        "updated_at": "2023-12-12T23:01:44.710042",
+        "__class__": "Amenity"
+    },
+    "Amenity.84f0da81-0a19-49da-8f21-0038337b296b": {
+        "id": "84f0da81-0a19-49da-8f21-0038337b296b",
+        "created_at": "2023-12-12T23:01:44.710047",
+        "updated_at": "2023-12-12T23:01:44.710047",
+        "__class__": "Amenity"
+    },
+    "Amenity.c873a42c-5aa6-4947-9f4f-145151acde67": {
+        "id": "c873a42c-5aa6-4947-9f4f-145151acde67",
+        "created_at": "2023-12-12T23:01:44.710053",
+        "updated_at": "2023-12-12T23:01:44.710053",
+        "__class__": "Amenity"
+    },
+    "Amenity.4de179d1-a5e6-4d70-811c-3873373f651e": {
+        "id": "4de179d1-a5e6-4d70-811c-3873373f651e",
+        "created_at": "2023-12-12T23:01:44.710111",
+        "updated_at": "2023-12-12T23:01:44.710111",
+        "__class__": "Amenity"
+    },
+    "Amenity.c1b742b2-c1c0-4994-b496-7abc27245f55": {
+        "id": "c1b742b2-c1c0-4994-b496-7abc27245f55",
+        "created_at": "2023-12-12T23:01:44.710136",
+        "updated_at": "2023-12-12T23:01:44.710136",
+        "__class__": "Amenity"
+    },
+    "BaseModel.576e5946-cb17-4f68-8a2a-b9de064862ae": {
+        "id": "576e5946-cb17-4f68-8a2a-b9de064862ae",
+        "created_at": "2023-12-12T23:01:44.710265",
+        "updated_at": "2023-12-12T23:01:44.710266",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.e76a778d-ae20-47a9-a9b4-ef6dde386086": {
+        "id": "e76a778d-ae20-47a9-a9b4-ef6dde386086",
+        "created_at": "2023-12-12T23:01:44.710338",
+        "updated_at": "2023-12-12T23:01:44.710340",
+        "__class__": "BaseModel"
+    },
+    "State.ab998d95-215d-4368-a3c4-676dfa50954b": {
+        "id": "ab998d95-215d-4368-a3c4-676dfa50954b",
+        "created_at": "2023-12-12T23:01:48.592936",
+        "updated_at": "2023-12-12T23:01:48.592969",
+        "__class__": "State"
+    },
+    "Amenity.83072b69-3f36-438f-a94b-2a1b48d98764": {
+        "id": "83072b69-3f36-438f-a94b-2a1b48d98764",
+        "created_at": "2023-12-12T23:01:48.594582",
+        "updated_at": "2023-12-12T23:01:48.594583",
+        "__class__": "Amenity"
+    },
+    "Amenity.27d22562-977d-4bec-a438-e078b1a6f4da": {
+        "id": "27d22562-977d-4bec-a438-e078b1a6f4da",
+        "created_at": "2023-12-12T23:01:48.594588",
+        "updated_at": "2023-12-12T23:01:48.594588",
+        "__class__": "Amenity"
+    },
+    "Amenity.15097b01-1f04-495d-a54f-bbd417ac012a": {
+        "id": "15097b01-1f04-495d-a54f-bbd417ac012a",
+        "created_at": "2023-12-12T23:01:48.594594",
+        "updated_at": "2023-12-12T23:01:48.594595",
+        "__class__": "Amenity"
+    },
+    "Amenity.7325d9ad-2755-4882-9c78-ee316e37aab6": {
+        "id": "7325d9ad-2755-4882-9c78-ee316e37aab6",
+        "created_at": "2023-12-12T23:01:48.594681",
+        "updated_at": "2023-12-12T23:01:48.594681",
+        "__class__": "Amenity"
+    },
+    "Amenity.94a182f9-9f3d-4703-81b0-6cb965c40056": {
+        "id": "94a182f9-9f3d-4703-81b0-6cb965c40056",
+        "created_at": "2023-12-12T23:01:48.594702",
+        "updated_at": "2023-12-12T23:01:48.594703",
+        "__class__": "Amenity"
+    },
+    "BaseModel.21f409da-c888-492a-8201-393717cc354a": {
+        "id": "21f409da-c888-492a-8201-393717cc354a",
+        "created_at": "2023-12-12T23:01:48.594753",
+        "updated_at": "2023-12-12T23:01:48.594754",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.6836bc5d-ab6d-4d39-80d4-78bbb81742a0": {
+        "id": "6836bc5d-ab6d-4d39-80d4-78bbb81742a0",
+        "created_at": "2023-12-12T23:01:48.594839",
+        "updated_at": "2023-12-12T23:01:48.594861",
+        "__class__": "BaseModel"
+    }
+}

@@ -11,7 +11,7 @@ from models import storage
 from unittest.mock import patch
 from models.engine.file_storage import FileStorage
 from console import HBNBCommand
-
+from io import StringIO
 
 
 class TestHBNBCommand_prompting(unittest.TestCase):
@@ -25,18 +25,17 @@ class TestHBNBCommand_prompting(unittest.TestCase):
         """Test the do_quit method of the HBNB command interpreter."""
         hbnb_command_instance = HBNBCommand()
         self.assertTrue(hbnb_command_instance.do_quit(None))
+
     def test_EOF_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("EOF"))
 
- 
-        
     def test_count_State(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create State"))
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("State.count()"))
-    
+
     def test_create_invalid_syntax(self):
         correct = "*** Unknown syntax: MyModel.create()"
         with patch("sys.stdout", new=StringIO()) as output:
@@ -73,8 +72,9 @@ class TestHBNBCommand_prompting(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".destroy()"))
             self.assertEqual(correct, output.getvalue().strip())
-            
+
     def test_help_functionality(self):
+        correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertTrue("Documented commands" in output.getvalue().strip())
@@ -83,6 +83,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_quit_functionality(self):
+        correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("quit"))
             self.assertTrue("Documented commands" in output.getvalue().strip())
@@ -91,6 +92,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_all_functionality(self):
+        correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("all"))
             self.assertTrue("Documented commands" in output.getvalue().strip())
@@ -99,12 +101,14 @@ class TestHBNBCommand_prompting(unittest.TestCase):
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_create_functionality(self):
+        correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create"))
             self.assertTrue("Documented commands" in output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".create()"))
             self.assertEqual(correct, output.getvalue().strip())
+
 
 if __name__ == "__main__":
     unittest.main()
